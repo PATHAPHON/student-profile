@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, TouchableOpacity, View, Linking, Alert } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, View, Linking, Alert, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { ThemedText } from '@/components/themed-text';
@@ -20,10 +20,6 @@ const contactOptions = [
   { icon: 'logo-github', label: 'GitHub', value: STUDENT.github, type: 'github' },
   { icon: 'logo-facebook', label: 'Facebook', value: STUDENT.facebook, type: 'facebook' },
 ] as const;
-
-function getInitials(first: string, last: string) {
-  return `${first.charAt(0)}${last.charAt(0)}`;
-}
 
 function handleContact(type: string, value: string) {
   switch (type) {
@@ -47,13 +43,7 @@ export default function ProfileScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Avatar */}
         <View style={styles.avatarWrapper}>
-          <View style={styles.avatar}>
-            <View style={styles.avatarFallback}>
-              <ThemedText style={styles.avatarInitials}>
-                {getInitials(STUDENT.firstName, STUDENT.lastName)}
-              </ThemedText>
-            </View>
-          </View>
+          <Image source={require('@/assets/images/NK.jpg')} style={styles.avatar} />
         </View>
 
         {/* Name */}
@@ -121,22 +111,6 @@ const styles = StyleSheet.create({
     width: 130,
     height: 130,
     borderRadius: 65,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0',
-  },
-  avatarFallback: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#e0e0e0',
-  },
-  avatarInitials: {
-    fontSize: 40,
-    fontWeight: '700',
-    color: '#333',
   },
   name: {
     fontSize: 26,
